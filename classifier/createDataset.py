@@ -53,7 +53,7 @@ def downloadImages(links):
 
 def main():
     initCarBrands()
-    data = getCarData()[-100:]
+    data = getCarData()
     downloadImages(data)
 
 if __name__ == "__main__":

@@ -15,4 +15,4 @@ class CarBrandsPipeline:
 
     def process_item(self, item, spider):
         for name in item["names"]:
-            self.file.write(name + "\n")
+            self.file.write(name.lower().replace(" ", "-") + "\n")

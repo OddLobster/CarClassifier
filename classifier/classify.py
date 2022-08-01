@@ -33,6 +33,7 @@ def getData():
     folder = "data"
     imgs = os.listdir(folder)
     num_imgs = len(imgs)
+    print("Number of images:", num_imgs)
     data_y = []
     data_x = []
     for i, name in enumerate(imgs):

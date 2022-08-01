@@ -3,6 +3,7 @@ import urllib.request
 #urllib.request.urlretrieve("http://www.digimouth.com/news/media/2011/09/google-logo.jpg", "local-filename.jpg")
 from PIL import Image, ImageOps
 import time 
+import os
 
 car_brands = []
 
@@ -36,11 +37,14 @@ def getCarData():
 
 def downloadImages(links):
     size = (300,300)
+    img_names = os.listdir("data")
     for link in links:
         print("Downloading images from:", link[1])
         for image_url in link[1]:
+            name = "data/" + link[0].lower() + "_" + image_url.split("/")[-1].replace("_", "").replace("-", "")
+            if name in img_names:
+                continue
             try:
-                name = "data/" + link[0].lower() + "_" + image_url.split("/")[-1].replace("_", "").replace("-", "")
                 urllib.request.urlretrieve(image_url, name)
                 img = Image.open(name)
                 resized = img.resize(size, Image.ANTIALIAS)

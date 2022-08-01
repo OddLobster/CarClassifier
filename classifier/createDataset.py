@@ -41,8 +41,11 @@ def downloadImages(links):
     for link in links:
         print("Downloading images from:", link[1])
         for image_url in link[1]:
-            name = "data/" + link[0].lower() + "_" + image_url.split("/")[-1].replace("_", "").replace("-", "")
-            if name in img_names:
+            prefix = "data/"
+            suffix = link[0].lower() + "_" + image_url.split("/")[-1].replace("_", "").replace("-", "")
+            name = prefix + suffix
+            if suffix in img_names:
+                print("Skipped:", name)
                 continue
             try:
                 urllib.request.urlretrieve(image_url, name)

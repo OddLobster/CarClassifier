@@ -8,10 +8,10 @@ logging.basicConfig(filename="car_scrape.log", level=logging.INFO)
 SCRAPE_INTERVAL = int(60*60*0.25) #in seconds
 
 def main():
-    total_scrapes_today = 0
+    total_scrapes_today = 1
     sum_new_entries = 0 
     total_time = 0
-    pages_to_scrape = 25
+    pages_to_scrape = 99
     with sql.connect('car.db') as conn:
         cursor = conn.cursor()
         while True:
@@ -23,7 +23,7 @@ def main():
                 pages_to_scrape = 5
 
             time_start = time.time()
-            subprocess.call(["scrapy", "crawl", "car_scraper", "-a", f"num_pages={pages_to_scrape}"], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+            subprocess.call(["scrapy", "crawl", "car_scraper", "-a", f"num_pages={pages_to_scrape}"], stderr=subprocess.STDOUT)
             time_end = time.time()
             print("Scrape took:", time_end - time_start)
             total_time += time_end - time_start

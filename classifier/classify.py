@@ -61,7 +61,7 @@ def main():
     x_train, x_test, y_train, y_test  = getData()
 
     model = createModel()
-    model.fit(x_train, y_train, epochs=10)
+    model.fit(x_train, y_train, epochs=100)
     model.evaluate(x_test, y_test)
 
 
